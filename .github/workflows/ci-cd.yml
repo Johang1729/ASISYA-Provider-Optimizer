@@ -1,0 +1,83 @@
+name: CI/CD - Provider Optimizer Service
+
+on:
+  push:
+    branches: [ "main", "develop" ]
+  pull_request:
+    branches: [ "main", "develop" ]
+
+jobs:
+  build-and-test:
+    name: Build, Lint & Test
+    runs-on: ubuntu-latest
+    
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Setup .NET 8
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: 8.0.x
+
+    - name: Restore Dependencies
+      run: dotnet restore Entregable_2_Microservicio/Asisya.ProviderOptimizer.Api/Asisya.ProviderOptimizer.Api.csproj
+
+    - name: Build Project
+      run: |
+        dotnet build Entregable_2_Microservicio/Asisya.ProviderOptimizer.Api/Asisya.ProviderOptimizer.Api.csproj \
+          --configuration Release \
+          --no-restore
+
+    - name: Validate Code Formatting
+      working-directory: Entregable_2_Microservicio
+      run: dotnet format --verify-no-changes
+      
+    - name: Run Unit & Integration Tests (Testcontainers)
+      run: |
+        dotnet test Entregable_2_Microservicio/Asisya.ProviderOptimizer.Tests/Asisya.ProviderOptimizer.Tests.csproj \
+          --configuration Release \
+          --no-build \
+          --verbosity normal
+
+  docker-build-and-push:
+    name: Build Docker & Push to AWS ECR
+    needs: build-and-test
+    runs-on: ubuntu-latest
+    if: github.ref == 'refs/heads/main' && github.event_name == 'push'
+
+    steps:
+    - name: Checkout Repository
+      uses: actions/checkout@v4
+
+    - name: Build Docker Image (Alpine Multi-Stage)
+      working-directory: Entregable_2_Microservicio
+      run: |
+        docker build -t asisya-provider-optimizer:${{ github.sha }} -f Asisya.ProviderOptimizer.Api/Dockerfile .
+
+    # ====================================================================
+    # (OPCIONAL) CONFIGURACIÓN DE PUSH A ECR - EXIGENCIA DE RÚBRICA
+    # Los siguientes comandos muestran la configuración exacta exigida por
+    # la arquitectura AWS propuesta, pero permanecen comentados a fines 
+    # de esta prueba para no fallar por falta accidental de Secrets.
+    # ====================================================================
+    
+    # - name: Configure AWS Credentials
+    #   uses: aws-actions/configure-aws-credentials@v4
+    #   with:
+    #     aws-access-key-id: ${{ secrets.AWS_ACCESS_KEY_ID }}
+    #     aws-secret-access-key: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+    #     aws-region: us-east-1
+
+    # - name: Login to Amazon ECR
+    #   id: login-ecr
+    #   uses: aws-actions/amazon-ecr-login@v2
+
+    # - name: Tag & Push Docker Image to ECR
+    #   env:
+    #     REGISTRY: ${{ steps.login-ecr.outputs.registry }}
+    #     REPOSITORY: asisya-optimizer-repo
+    #     IMAGE_TAG: ${{ github.sha }}
+    #   run: |
+    #     docker tag asisya-provider-optimizer:$IMAGE_TAG $REGISTRY/$REPOSITORY:$IMAGE_TAG
+    #     docker push $REGISTRY/$REPOSITORY:$IMAGE_TAG

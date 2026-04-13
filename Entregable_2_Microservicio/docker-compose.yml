@@ -1,0 +1,30 @@
+version: '3.8'
+
+services:
+  asisya.optimizer.api:
+    image: asisya-optimizer-api:latest
+    build:
+      context: .
+      dockerfile: Asisya.ProviderOptimizer.Api/Dockerfile
+    ports:
+      - "5000:8080"
+    environment:
+      - ASPNETCORE_ENVIRONMENT=Development
+      - ConnectionStrings__DefaultConnection=Host=asisya.postgres;Database=AsisyaOptimizer;Username=postgres;Password=admin
+    depends_on:
+      - asisya.postgres
+
+  asisya.postgres:
+    image: postgres:15-alpine
+    container_name: asisya_postgres
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: admin
+      POSTGRES_DB: AsisyaOptimizer
+    ports:
+      - "5432:5432"
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+
+volumes:
+  postgres_data:
