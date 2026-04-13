@@ -1,0 +1,2 @@
+* text=auto eol=lf
+*.{cs,json,yml,md} text eol=lf
