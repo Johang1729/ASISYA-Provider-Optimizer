@@ -3,10 +3,10 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
+using Asisya.ProviderOptimizer.Application.Interfaces;
 using Asisya.ProviderOptimizer.Domain.Entities;
 using Asisya.ProviderOptimizer.Domain.Services;
-using Asisya.ProviderOptimizer.Application.Interfaces;
+using MediatR;
 
 namespace Asisya.ProviderOptimizer.Application.Commands;
 

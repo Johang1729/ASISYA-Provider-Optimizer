@@ -1,9 +1,9 @@
 using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
-using MediatR;
 using Asisya.ProviderOptimizer.Application.Interfaces;
 using Asisya.ProviderOptimizer.Domain.Entities;
+using MediatR;
 
 namespace Asisya.ProviderOptimizer.Application.Queries;
 

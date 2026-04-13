@@ -1,11 +1,11 @@
+using System.Reflection;
+using Asisya.ProviderOptimizer.Application.Commands;
+using Asisya.ProviderOptimizer.Application.Interfaces;
+using Asisya.ProviderOptimizer.Infrastructure.Persistence;
+using Asisya.ProviderOptimizer.Infrastructure.Repositories;
+using Microsoft.AspNetCore.Builder;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.AspNetCore.Builder;
-using Asisya.ProviderOptimizer.Infrastructure.Persistence;
-using Asisya.ProviderOptimizer.Application.Interfaces;
-using Asisya.ProviderOptimizer.Infrastructure.Repositories;
-using Asisya.ProviderOptimizer.Application.Commands;
-using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 

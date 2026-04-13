@@ -1,8 +1,8 @@
 using System.Threading.Tasks;
-using Microsoft.AspNetCore.Mvc;
-using MediatR;
 using Asisya.ProviderOptimizer.Application.Commands;
 using Asisya.ProviderOptimizer.Application.Queries;
+using MediatR;
+using Microsoft.AspNetCore.Mvc;
 
 namespace Asisya.ProviderOptimizer.Api.Controllers;
 

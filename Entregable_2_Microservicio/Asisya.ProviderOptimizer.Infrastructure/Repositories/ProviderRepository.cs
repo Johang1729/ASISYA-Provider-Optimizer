@@ -1,10 +1,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using Microsoft.EntityFrameworkCore;
-using Asisya.ProviderOptimizer.Domain.Entities;
 using Asisya.ProviderOptimizer.Application.Interfaces;
+using Asisya.ProviderOptimizer.Domain.Entities;
 using Asisya.ProviderOptimizer.Infrastructure.Persistence;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asisya.ProviderOptimizer.Infrastructure.Repositories;
 

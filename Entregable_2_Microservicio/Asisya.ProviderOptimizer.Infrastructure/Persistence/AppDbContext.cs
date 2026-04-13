@@ -1,6 +1,6 @@
 using System;
-using Microsoft.EntityFrameworkCore;
 using Asisya.ProviderOptimizer.Domain.Entities;
+using Microsoft.EntityFrameworkCore;
 
 namespace Asisya.ProviderOptimizer.Infrastructure.Persistence;
 

@@ -1,12 +1,12 @@
 using System;
 using System.Linq;
 using System.Threading.Tasks;
-using Xunit;
+using Asisya.ProviderOptimizer.Domain.Entities;
+using Asisya.ProviderOptimizer.Infrastructure.Persistence;
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using Testcontainers.PostgreSql;
-using Asisya.ProviderOptimizer.Infrastructure.Persistence;
-using Asisya.ProviderOptimizer.Domain.Entities;
+using Xunit;
 
 namespace Asisya.ProviderOptimizer.Tests;
 

@@ -1,8 +1,8 @@
 using System;
-using Xunit;
-using FluentAssertions;
 using Asisya.ProviderOptimizer.Domain.Entities;
 using Asisya.ProviderOptimizer.Domain.Services;
+using FluentAssertions;
+using Xunit;
 
 namespace Asisya.ProviderOptimizer.Tests;
 
