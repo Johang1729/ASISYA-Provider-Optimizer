@@ -11,7 +11,6 @@ Este repositorio consolida la solución integral para el motor de optimización 
 
 ### 📖 Recursos Adicionales
 Para una comprensión profunda de la visión estratégica y el diseño, se incluyen los siguientes documentos en la raíz:
-- [Manual de Estrategia y Diseño](./Manual%20de%20Estrategia%20y%20Diseño_%20Sistema%20de%20Asistencia%20Vehicular%20Inteligente%20-%20ASISYA.pdf): Visión de negocio y arquitectura conceptual.
 - [Prueba Técnica (Original)](./PRUEBA%20TÉCNICA%20-%20Lider%20Tecnico%20(1).pdf): Requerimientos y criterios de evaluación.
 - **Diagramas y Evidencias**: Cada carpeta de entregable incluye sus propios diagramas (C4, UML) y capturas de pantalla de validación.
 
