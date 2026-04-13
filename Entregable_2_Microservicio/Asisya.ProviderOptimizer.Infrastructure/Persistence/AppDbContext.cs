@@ -13,7 +13,7 @@ public class AppDbContext : DbContext
     protected override void OnModelCreating(ModelBuilder modelBuilder)
     {
         modelBuilder.Entity<Provider>().HasKey(p => p.Id);
-        
+
         modelBuilder.Entity<Provider>().HasData(
             new Provider { Id = Guid.Parse("11111111-1111-1111-1111-111111111111"), Name = "Grúas Express VIP", VehicleCapacity = "Sedan,SUV,Moto", IncidentCapacity = "Remolque,Bateria", Rating = 4.9, AcceptanceRate = 0.95, CurrentLat = 40.7128, CurrentLng = -74.0060, Status = "Libre" },
             new Provider { Id = Guid.Parse("22222222-2222-2222-2222-222222222222"), Name = "Grúas Lentas", VehicleCapacity = "Sedan,SUV", IncidentCapacity = "Remolque", Rating = 3.5, AcceptanceRate = 0.20, CurrentLat = 40.7135, CurrentLng = -74.0050, Status = "Libre" },

@@ -25,15 +25,15 @@ public class ScoringPolicy
         double ratingScore = (provider.Rating / 5.0) * 100;
         double acceptanceScore = provider.AcceptanceRate * 100;
 
-        double finalScore = 
-            (distanceScore * WeightDistance) + 
-            (etaScore * WeightETA) + 
-            (ratingScore * WeightRating) + 
+        double finalScore =
+            (distanceScore * WeightDistance) +
+            (etaScore * WeightETA) +
+            (ratingScore * WeightRating) +
             (acceptanceScore * WeightAcceptance);
 
         if (ticket.IsPremiumUser)
         {
-            finalScore *= 1.20; 
+            finalScore *= 1.20;
         }
 
         return Math.Min(100.0, Math.Round(finalScore, 2));

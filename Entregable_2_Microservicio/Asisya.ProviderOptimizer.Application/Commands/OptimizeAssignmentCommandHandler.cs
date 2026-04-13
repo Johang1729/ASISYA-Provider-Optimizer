@@ -39,7 +39,7 @@ public class OptimizeAssignmentCommandHandler : IRequestHandler<OptimizeAssignme
         foreach (var provider in activeProviders)
         {
             double distKm = CalculateDistanceHaversine(ticket.IncidentLat, ticket.IncidentLng, provider.CurrentLat, provider.CurrentLng);
-            
+
             if (distKm > 20.0) continue;
 
             double etaMins = distKm * 3.0;
@@ -57,7 +57,7 @@ public class OptimizeAssignmentCommandHandler : IRequestHandler<OptimizeAssignme
 
         var leaderboard = scoredProviders.OrderByDescending(x => x.score).ToList();
         var winner = leaderboard.First();
-        
+
         var result = new OptimizationResultDto
         {
             WinnerProviderId = winner.provider.Id,
@@ -70,7 +70,8 @@ public class OptimizeAssignmentCommandHandler : IRequestHandler<OptimizeAssignme
         var backupTop5 = leaderboard.Skip(1).Take(5);
         foreach (var fb in backupTop5)
         {
-            result.BoardFallback.Add(new SimulatedBoardItem {
+            result.BoardFallback.Add(new SimulatedBoardItem
+            {
                 ProviderId = fb.provider.Id,
                 Name = fb.provider.Name,
                 Score = Math.Round(fb.score, 2)
@@ -85,14 +86,14 @@ public class OptimizeAssignmentCommandHandler : IRequestHandler<OptimizeAssignme
     /// </summary>
     private double CalculateDistanceHaversine(double lat1, double lon1, double lat2, double lon2)
     {
-        var R = 6371; 
+        var R = 6371;
         var dLat = (lat2 - lat1) * Math.PI / 180.0;
         var dLon = (lon2 - lon1) * Math.PI / 180.0;
-        var a = 
+        var a =
             Math.Sin(dLat / 2) * Math.Sin(dLat / 2) +
-            Math.Cos(lat1 * Math.PI / 180.0) * Math.Cos(lat2 * Math.PI / 180.0) * 
-            Math.Sin(dLon / 2) * Math.Sin(dLon / 2); 
-        var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a)); 
-        return R * c; 
+            Math.Cos(lat1 * Math.PI / 180.0) * Math.Cos(lat2 * Math.PI / 180.0) *
+            Math.Sin(dLon / 2) * Math.Sin(dLon / 2);
+        var c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+        return R * c;
     }
 }
