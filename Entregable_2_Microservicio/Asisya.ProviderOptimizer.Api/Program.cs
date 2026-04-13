@@ -9,7 +9,7 @@ using System.Reflection;
 
 var builder = WebApplication.CreateBuilder(args);
 
-var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection") 
+var defaultConnection = builder.Configuration.GetConnectionString("DefaultConnection")
     ?? "Host=localhost;Database=AsisyaOptimizer;Username=postgres;Password=admin";
 
 builder.Services.AddDbContext<AppDbContext>(options =>
@@ -18,7 +18,8 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 builder.Services.AddScoped<IProviderRepository, ProviderRepository>();
 
-builder.Services.AddMediatR(cfg => {
+builder.Services.AddMediatR(cfg =>
+{
     cfg.RegisterServicesFromAssembly(typeof(OptimizeAssignmentCommand).Assembly);
 });
 
@@ -35,9 +36,10 @@ using (var scope = app.Services.CreateScope())
 }
 
 app.UseSwagger();
-app.UseSwaggerUI(c => {
+app.UseSwaggerUI(c =>
+{
     c.SwaggerEndpoint("/swagger/v1/swagger.json", "Optimizer API v1");
-    c.RoutePrefix = string.Empty; 
+    c.RoutePrefix = string.Empty;
 });
 
 app.UseAuthorization();

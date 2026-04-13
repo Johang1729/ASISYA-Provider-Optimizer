@@ -8,7 +8,7 @@ namespace Asisya.ProviderOptimizer.Tests;
 
 public class ScoringPolicyTests
 {
-    private readonly ScoringPolicy _sut; 
+    private readonly ScoringPolicy _sut;
 
     public ScoringPolicyTests()
     {
@@ -23,7 +23,7 @@ public class ScoringPolicyTests
 
         var result = _sut.CalculateScore(provider, ticket, 5.0, 15.0);
 
-        result.Should().Be(0); 
+        result.Should().Be(0);
     }
 
     [Fact]
@@ -34,7 +34,7 @@ public class ScoringPolicyTests
 
         var result = _sut.CalculateScore(provider, ticket, 5.0, 15.0);
 
-        result.Should().Be(0); 
+        result.Should().Be(0);
     }
 
     [Fact]
