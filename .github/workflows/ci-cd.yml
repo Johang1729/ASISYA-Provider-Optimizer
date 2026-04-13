@@ -21,11 +21,11 @@ jobs:
         dotnet-version: 8.0.x
 
     - name: Restore Dependencies
-      run: dotnet restore Entregable_2_Microservicio/Asisya.ProviderOptimizer.Api/Asisya.ProviderOptimizer.Api.csproj
+      run: dotnet restore Entregable_2_Microservicio/Asisya.ProviderOptimizer.sln
 
-    - name: Build Project
+    - name: Build Solution
       run: |
-        dotnet build Entregable_2_Microservicio/Asisya.ProviderOptimizer.Api/Asisya.ProviderOptimizer.Api.csproj \
+        dotnet build Entregable_2_Microservicio/Asisya.ProviderOptimizer.sln \
           --configuration Release \
           --no-restore
 
