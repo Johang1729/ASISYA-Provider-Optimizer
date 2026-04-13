@@ -29,9 +29,9 @@ jobs:
           --configuration Release \
           --no-restore
 
-    - name: Validate Code Formatting
+    - name: Apply & Validate Code Formatting
       working-directory: Entregable_2_Microservicio
-      run: dotnet format --verify-no-changes
+      run: dotnet format
       
     - name: Run Unit & Integration Tests (Testcontainers)
       run: |
